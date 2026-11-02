@@ -16,7 +16,7 @@ function FavoriteProductListScreen({
 }: RootNavigationScreenProps<'FavoriteProductList'>) {
   const navigateToProductDetail = useCallback(
     (productId: string) => {
-      navigation.navigate('ProductsStack', { screen: 'ProductDetail', params: { productId } }); // TODO: Implement
+      navigation.navigate('ProductsStack', { screen: 'ProductDetail', params: { productId } });
     },
     [navigation],
   );
