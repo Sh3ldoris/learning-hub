@@ -1,12 +1,9 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useMemo } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { getProductById } from '../mock-data/data';
-import { NavigationParamList } from '../types/NavigationParamList';
+import { ProductStackScreenProps } from '../types/NavigationParamList';
 
-type Props = NativeStackScreenProps<NavigationParamList, 'ProductDetail'>;
-
-function ProductDetailScreen({ route }: Props) {
+function ProductDetailScreen({ route }: ProductStackScreenProps<'ProductDetail'>) {
   const product = useMemo(() => {
     return getProductById(route.params.productId);
   }, [route.params.productId]);

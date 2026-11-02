@@ -1,10 +1,7 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useCallback } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import { getProductList, Product } from '../mock-data/data';
-import { NavigationParamList } from '../types/NavigationParamList';
-
-type Props = NativeStackScreenProps<NavigationParamList, 'ProductList'>;
+import { ProductStackScreenProps } from '../types/NavigationParamList';
 
 const keyExtractor = (item: Product) => item.id;
 
@@ -14,7 +11,7 @@ function ProductSeparator() {
 
 const productList = getProductList();
 
-function ProductListScreen({ navigation }: Props) {
+function ProductListScreen({ navigation }: ProductStackScreenProps<'ProductList'>) {
   // Navigation to production detail screen
   const navigateToProductDetail = useCallback(
     (productId: string) => {

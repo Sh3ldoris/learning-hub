@@ -1,7 +1,7 @@
 import { useReactNavigationDevTools } from '@dev-plugins/react-navigation';
 import { useLogger } from '@react-navigation/devtools';
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
-import RootStack from './screens/RootStack';
+import { RootNavigation } from './screens/ProductsStack';
 
 /** Simple console log of navigation state **/
 // const onStateChange = (state: Readonly<NavigationState> | undefined) => {
@@ -17,7 +17,7 @@ export function App() {
 
   return (
     <NavigationContainer ref={navigationRef}>
-      <RootStack />
+      <RootNavigation />
     </NavigationContainer>
   );
 }
