@@ -52,7 +52,7 @@
 
 **Prezentácia:** [Navigácia (PDF)](presentations/5%20-%20Navigacia.pdf).
 
-### 5. Asynchrónne procesy
+### 6. Asynchrónne procesy
 
 **Videá z hodiny:**
 
