@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import { getFavoriteProducts, Product } from '../mock-data/data';
-import { RootNavigationScreenProps } from '../types/NavigationParamList';
+import { BottomTabNavigationScreenProps } from '../types/NavigationParamList';
 
 const keyExtractor = (item: Product) => item.id;
 
@@ -13,7 +13,7 @@ const productList = getFavoriteProducts();
 
 function FavoriteProductListScreen({
   navigation,
-}: RootNavigationScreenProps<'FavoriteProductList'>) {
+}: BottomTabNavigationScreenProps<'FavoriteProductList'>) {
   const navigateToProductDetail = useCallback(
     (productId: string) => {
       navigation.navigate('ProductsStack', { screen: 'ProductDetail', params: { productId } });

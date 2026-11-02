@@ -25,7 +25,7 @@ const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 const Drawer = createDrawerNavigator<DrawerParamList>();
 const RootStack = createStackNavigator<RootStackParamList>();
 
-export function ProductsStack() {
+export function RootNavigation() {
   return (
     <Stack.Navigator screenOptions={{ headerBackButtonDisplayMode: 'minimal' }}>
       <Stack.Screen

@@ -1,4 +1,5 @@
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { DrawerScreenProps } from '@react-navigation/drawer';
 import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
@@ -9,7 +10,7 @@ export type ProductStackParamList = {
 
 export type ProductStackScreenProps<T extends keyof ProductStackParamList> = CompositeScreenProps<
   NativeStackScreenProps<ProductStackParamList, T>,
-  RootNavigationScreenProps<'ProductsStack'>
+  BottomTabNavigationScreenProps<'ProductsStack'>
 >;
 
 export type BottomTabParamList = {
@@ -17,7 +18,18 @@ export type BottomTabParamList = {
   FavoriteProductList: undefined;
 };
 
-export type RootNavigationScreenProps<T extends keyof BottomTabParamList> = BottomTabScreenProps<
-  BottomTabParamList,
+export type BottomTabNavigationScreenProps<T extends keyof BottomTabParamList> =
+  CompositeScreenProps<
+    BottomTabScreenProps<BottomTabParamList, T>,
+    RootNavigationScreenProps<'BottomNavigation'>
+  >;
+
+export type DrawerParamList = {
+  BottomNavigation: NavigatorScreenParams<BottomTabParamList>;
+  UserDetail: undefined;
+};
+
+export type RootNavigationScreenProps<T extends keyof DrawerParamList> = DrawerScreenProps<
+  DrawerParamList,
   T
 >;

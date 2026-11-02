@@ -20,6 +20,10 @@ function ProductListScreen({ navigation }: ProductStackScreenProps<'ProductList'
     [navigation],
   );
 
+  const openMenu = useCallback(() => {
+    navigation.openDrawer();
+  }, [navigation]);
+
   const renderProduct = useCallback(
     ({ item }: { item: Product }) => (
       <Pressable style={styles.card} onPress={() => navigateToProductDetail(item.id)}>
@@ -41,6 +45,11 @@ function ProductListScreen({ navigation }: ProductStackScreenProps<'ProductList'
 
   return (
     <View style={styles.container}>
+      <View style={styles.toolbar}>
+        <Pressable style={styles.menuButton} onPress={openMenu}>
+          <Text style={styles.menuButtonText}>Menu</Text>
+        </Pressable>
+      </View>
       <FlatList
         data={productList}
         renderItem={renderProduct}
@@ -97,6 +106,22 @@ const styles = StyleSheet.create({
   },
   separator: {
     height: 10,
+  },
+  toolbar: {
+    flexDirection: 'row',
+    gap: 10,
+    paddingHorizontal: 16,
+    paddingTop: 16,
+  },
+  menuButton: {
+    backgroundColor: '#1C1C1E',
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+  },
+  menuButtonText: {
+    color: '#FFFFFF',
+    fontWeight: '600',
   },
 });
 

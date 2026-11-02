@@ -1,7 +1,7 @@
 import { useReactNavigationDevTools } from '@dev-plugins/react-navigation';
 import { useLogger } from '@react-navigation/devtools';
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
-import { RootNavigation } from './screens/ProductsStack';
+import { RootNavigation } from './screens/RootNavigation';
 
 /** Simple console log of navigation state **/
 // const onStateChange = (state: Readonly<NavigationState> | undefined) => {
