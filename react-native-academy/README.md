@@ -60,3 +60,11 @@
 
 **Prezentácia:** [Asynchrónne procesy (PDF)](presentations/7%20-%20Asynchr%C3%B3nne%20processy.pdf).
 
+### 7. Spracovanie formulárov
+
+**Videá z hodiny:**
+
+- Video 1: [13. hodina](https://localhost365-my.sharepoint.com/:v:/g/personal/stefan_localhost_company/IQD-P9omOcMEQ6rJDRLCHojPAa7EU_G0nFAFQcDtmkUUMj4?e=q2cbCp)
+
+**Prezentácia:** TBD.
+
