@@ -1,4 +1,6 @@
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useCallback, useContext } from 'react';
+import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { LoginContextProvider } from '../context/LoginContext';
 
 const user = {
   name: 'Ing. Peter Kováč',
@@ -16,6 +18,11 @@ const user = {
 const userPhotoUri = { uri: 'https://i.pravatar.cc/200?img=12' };
 
 function UserDetailScreen() {
+  const { setIsLoggedIn } = useContext(LoginContextProvider);
+  const handleLogout = useCallback(() => {
+    setIsLoggedIn(false);
+  }, [setIsLoggedIn]);
+
   return (
     <ScrollView contentContainerStyle={styles.content}>
       <View style={styles.header}>
@@ -62,11 +69,36 @@ function UserDetailScreen() {
         <Text style={styles.value}>Registrovaný od: {user.memberSince}</Text>
         <Text style={styles.value}>Vernostný program: Zlatý partner</Text>
       </View>
+
+      {/* Log out CTA */}
+      <Pressable
+        style={({ pressed }) => [styles.logoutButton, pressed && styles.logoutButtonPressed]}
+        android_ripple={{ color: '#FFFFFF33' }}
+        onPress={handleLogout}
+      >
+        <Text style={styles.logoutButtonText}>Odhlásiť sa</Text>
+      </Pressable>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  logoutButton: {
+    marginTop: 28,
+    backgroundColor: '#B3261E',
+    borderRadius: 10,
+    paddingVertical: 13,
+    alignItems: 'center',
+  },
+  logoutButtonPressed: {
+    backgroundColor: '#8C1D18',
+    opacity: 0.9,
+  },
+  logoutButtonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '700',
+  },
   content: {
     padding: 16,
   },

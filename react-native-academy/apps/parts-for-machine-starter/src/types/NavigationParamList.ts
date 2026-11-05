@@ -27,6 +27,7 @@ export type BottomTabNavigationScreenProps<T extends keyof BottomTabParamList> =
 export type DrawerParamList = {
   BottomNavigation: NavigatorScreenParams<BottomTabParamList>;
   UserDetail: undefined;
+  Login: undefined;
 };
 
 export type RootNavigationScreenProps<T extends keyof DrawerParamList> = DrawerScreenProps<

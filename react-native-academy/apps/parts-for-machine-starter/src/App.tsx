@@ -2,6 +2,7 @@ import { useReactNavigationDevTools } from '@dev-plugins/react-navigation';
 import { useLogger } from '@react-navigation/devtools';
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 import * as Linking from 'expo-linking';
+import LoginContext from './context/LoginContext';
 import { RootNavigation } from './screens/RootNavigation';
 
 /** Simple console log of navigation state **/
@@ -43,7 +44,9 @@ export function App() {
 
   return (
     <NavigationContainer linking={linking} ref={navigationRef}>
-      <RootNavigation />
+      <LoginContext>
+        <RootNavigation />
+      </LoginContext>
     </NavigationContainer>
   );
 }

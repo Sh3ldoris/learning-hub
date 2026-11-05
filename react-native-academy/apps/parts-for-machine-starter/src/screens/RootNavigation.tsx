@@ -1,12 +1,15 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useContext } from 'react';
+import { LoginContextProvider } from '../context/LoginContext';
 import {
   BottomTabParamList,
   DrawerParamList,
   ProductStackParamList,
 } from '../types/NavigationParamList';
 import FavoriteProductListScreen from './FavoriteProductListScreen';
+import LoginScreen from './LoginScreen';
 import ProductDetailScreen from './ProductDetailScreen';
 import ProductListScreen from './ProductListScreen';
 import UserDetailScreen from './UserDetailScreen';
@@ -38,6 +41,7 @@ export const BottomNavigation = () => {
 };
 
 export const RootNavigation = () => {
+  const { isLoggedIn } = useContext(LoginContextProvider);
   return (
     <Drawer.Navigator>
       <Drawer.Screen
@@ -45,7 +49,11 @@ export const RootNavigation = () => {
         component={BottomNavigation}
         options={{ headerShown: false }}
       />
-      <Drawer.Screen name="UserDetail" component={UserDetailScreen} />
+      {isLoggedIn ? (
+        <Drawer.Screen name="UserDetail" component={UserDetailScreen} />
+      ) : (
+        <Drawer.Screen name="Login" component={LoginScreen} />
+      )}
     </Drawer.Navigator>
   );
 };
