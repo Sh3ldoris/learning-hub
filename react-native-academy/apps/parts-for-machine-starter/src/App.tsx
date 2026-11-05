@@ -1,12 +1,38 @@
 import { useReactNavigationDevTools } from '@dev-plugins/react-navigation';
 import { useLogger } from '@react-navigation/devtools';
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
+import * as Linking from 'expo-linking';
 import { RootNavigation } from './screens/RootNavigation';
 
 /** Simple console log of navigation state **/
 // const onStateChange = (state: Readonly<NavigationState> | undefined) => {
 //   console.log(JSON.stringify(state, null, 2));
 // };
+
+/**
+ * Deep linking listener set-up
+ * from terminal call `xcrun simctl openurl booted "exp://{ip-address}:8081/--/UserDetail"` where ip-address is ip that shows the react when running
+ */
+const linking = {
+  prefixes: [Linking.createURL('/')],
+  config: {
+    screens: {
+      BottomNavigation: {
+        screens: {
+          ProductsStack: {
+            initialRouteName: 'ProductList',
+            screens: {
+              ProductList: 'product-list',
+              ProductDetail: 'product-detail/:productId',
+            },
+          },
+          FavoriteProductList: 'favorites',
+        },
+      },
+      UserDetail: 'user',
+    },
+  },
+};
 
 export function App() {
   const navigationRef = useNavigationContainerRef();
@@ -16,7 +42,7 @@ export function App() {
   useReactNavigationDevTools(navigationRef);
 
   return (
-    <NavigationContainer ref={navigationRef}>
+    <NavigationContainer linking={linking} ref={navigationRef}>
       <RootNavigation />
     </NavigationContainer>
   );
