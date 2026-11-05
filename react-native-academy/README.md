@@ -68,3 +68,10 @@
 
 **Prezentácia:** TBD.
 
+### 8. Globálny state management
+
+**Videá z hodiny:**
+
+- Video 1: [14. hodina](https://localhost365-my.sharepoint.com/:v:/g/personal/stefan_localhost_company/IQB5iUFiLBLHRJE_b7IfQmTRAUAcNudROXJCCJUNiTG9LEM?e=PzLawU)
+
+**Prezentácia:** TBD.
