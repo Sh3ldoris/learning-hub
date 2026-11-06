@@ -71,7 +71,7 @@ export const RootNavigation = () => {
         component={DrawerNavigation}
       />
       <RootStack.Screen
-        options={{ presentation: 'modal' }}
+        options={{ presentation: 'card' }}
         name="ProductFilter"
         component={ProductFilterScreen}
       />
