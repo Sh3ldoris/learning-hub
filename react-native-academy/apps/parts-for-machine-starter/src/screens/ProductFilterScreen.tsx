@@ -1,3 +1,4 @@
+import { CommonActions } from '@react-navigation/native';
 import { useCallback, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { ProductSortBy, SortDirection } from '../mock-data/data';
@@ -16,28 +17,36 @@ const DIRECTION_OPTIONS: { value: SortDirection; label: string }[] = [
 ];
 
 function ProductFilterScreen({ navigation, route }: RootStackScreenProps<'ProductFilter'>) {
-  const [sortBy, setSortBy] = useState<ProductSortBy | undefined>(route.params?.sortBy);
-  const [direction, setDirection] = useState<SortDirection>(route.params?.direction ?? 'asc');
+  const [sortBy, setSortBy] = useState<ProductSortBy | undefined>(
+    route.params.currentFilter?.sortBy,
+  );
+  const [direction, setDirection] = useState<SortDirection>(
+    route.params.currentFilter?.direction ?? 'asc',
+  );
 
   const toggleSortBy = useCallback((value: ProductSortBy) => {
     setSortBy(current => (current === value ? undefined : value));
   }, []);
 
   const applyFilter = useCallback(() => {
-    navigation.popTo('Drawer', {
-      screen: 'BottomNavigation',
-      params: {
-        screen: 'ProductsStack',
-        params: {
-          screen: 'ProductList',
-          params: {
-            sortBy,
-            direction,
-          },
-        },
-      },
+    // Need to change params for source screen as goBack function doesn't have an option for params
+    // Mutate the params of provided source screen (from where the filter was opened)
+    navigation.dispatch({
+      ...CommonActions.setParams({
+        sortBy,
+        direction,
+      }),
+      source: route.params.sourceScreenKey,
+      target: route.params.sourceNavigatorKey,
     });
-  }, [navigation, sortBy, direction]);
+    navigation.goBack();
+  }, [
+    navigation,
+    sortBy,
+    direction,
+    route.params.sourceScreenKey,
+    route.params.sourceNavigatorKey,
+  ]);
 
   const resetFilter = useCallback(() => {
     setSortBy(undefined);

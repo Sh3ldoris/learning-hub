@@ -20,8 +20,12 @@ function ProductListScreen({ navigation, route }: ProductStackScreenProps<'Produ
     [navigation],
   );
   const openFilter = useCallback(() => {
-    navigation.navigate('ProductFilter', route.params);
-  }, [navigation, route.params]);
+    navigation.navigate('ProductFilter', {
+      currentFilter: route.params,
+      sourceScreenKey: route.key,
+      sourceNavigatorKey: navigation.getState().key,
+    });
+  }, [navigation, route.params, route.key]);
   // Filtered products
   const productList = useMemo(() => getProductList(route.params), [route.params]);
 

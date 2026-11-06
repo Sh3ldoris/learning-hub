@@ -34,7 +34,13 @@ export type DrawerParamList = {
 
 export type RootStackParamList = {
   Drawer: NavigatorScreenParams<DrawerParamList>;
-  ProductFilter: GetProductListOptions | undefined;
+  ProductFilter: {
+    currentFilter?: GetProductListOptions;
+    // route.key zdrojovej obrazovky, ktorá otvorí filter
+    sourceScreenKey: string;
+    // navigation.getState().key navigátora, ktorý vlastní zdrojovú obrazovku
+    sourceNavigatorKey: string;
+  };
 };
 
 export type DrawerNavigationScreenProps<T extends keyof DrawerParamList> = CompositeScreenProps<
