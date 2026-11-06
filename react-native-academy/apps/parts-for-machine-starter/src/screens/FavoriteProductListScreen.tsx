@@ -1,13 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getProductList, Product } from '../mock-data/data';
 import { BottomTabNavigationScreenProps } from '../types/NavigationParamList';
-
-const keyExtractor = (item: Product) => item.id;
-
-function ProductSeparator() {
-  return <View style={styles.separator} />;
-}
 
 function FavoriteProductListScreen({
   navigation,
@@ -39,6 +34,24 @@ function FavoriteProductListScreen({
     flatListRef.current?.scrollToOffset({ animated: false, offset: 0 });
   }, [route.params]);
 
+  const insets = useSafeAreaInsets();
+
+  const renderHeader = useCallback(
+    () => (
+      <View style={styles.header}>
+        <Text
+          style={styles.title}
+          accessibilityRole="header"
+          numberOfLines={1}
+          adjustsFontSizeToFit
+        >
+          Obľúbené produkty
+        </Text>
+      </View>
+    ),
+    [],
+  );
+
   const renderProduct = useCallback(
     ({ item }: { item: Product }) => (
       <Pressable style={styles.card} onPress={() => navigateToProductDetail(item.id)}>
@@ -59,19 +72,20 @@ function FavoriteProductListScreen({
   );
 
   return (
-    <View style={styles.container}>
-      <View style={styles.toolbar}>
+    <View style={[styles.container, { paddingTop: insets.top }]}>
+      {/*<View style={styles.toolbar}>
         <Pressable style={styles.menuButton} onPress={openFilter}>
           <Text style={styles.menuButtonText}>Filter</Text>
         </Pressable>
-      </View>
+      </View>*/}
       <FlatList
-        ref={flatListRef}
         data={productList}
+        contentInsetAdjustmentBehavior={'automatic'}
+        ListHeaderComponent={renderHeader}
         renderItem={renderProduct}
-        keyExtractor={keyExtractor}
+        keyExtractor={item => item.id}
         contentContainerStyle={styles.listContent}
-        ItemSeparatorComponent={ProductSeparator}
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
       />
     </View>
   );
@@ -83,11 +97,6 @@ const styles = StyleSheet.create({
   },
   listContent: {
     padding: 16,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: '700',
-    marginBottom: 16,
   },
   card: {
     backgroundColor: '#FFFFFF',
@@ -138,6 +147,18 @@ const styles = StyleSheet.create({
   menuButtonText: {
     color: '#FFFFFF',
     fontWeight: '600',
+  },
+  header: {
+    paddingHorizontal: 16,
+    paddingTop: 12,
+    paddingBottom: 4,
+  },
+  title: {
+    fontSize: 28,
+    lineHeight: 34,
+    fontWeight: '700',
+    letterSpacing: 0.35,
+    color: '#1C1C1E',
   },
 });
 

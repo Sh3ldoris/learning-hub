@@ -39,7 +39,11 @@ export const BottomNavigation = () => {
         component={ProductsStack}
         options={{ headerShown: false }}
       />
-      <BottomTab.Screen name="FavoriteProductList" component={FavoriteProductListScreen} />
+      <BottomTab.Screen
+        name="FavoriteProductList"
+        options={{ headerShown: false }}
+        component={FavoriteProductListScreen}
+      />
     </BottomTab.Navigator>
   );
 };
