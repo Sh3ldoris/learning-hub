@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import { getProductList, Product } from '../mock-data/data';
 import { ProductStackScreenProps } from '../types/NavigationParamList';
@@ -9,9 +9,7 @@ function ProductSeparator() {
   return <View style={styles.separator} />;
 }
 
-const productList = getProductList();
-
-function ProductListScreen({ navigation }: ProductStackScreenProps<'ProductList'>) {
+function ProductListScreen({ navigation, route }: ProductStackScreenProps<'ProductList'>) {
   // Navigation to production detail screen
   const navigateToProductDetail = useCallback(
     (productId: string) => {
@@ -19,6 +17,11 @@ function ProductListScreen({ navigation }: ProductStackScreenProps<'ProductList'
     },
     [navigation],
   );
+  const openFilter = useCallback(() => {
+    navigation.navigate('ProductFilter', route.params);
+  }, [navigation, route.params]);
+  // Filtered products
+  const productList = useMemo(() => getProductList(route.params), [route.params]);
 
   const openMenu = useCallback(() => {
     navigation.openDrawer();
@@ -48,6 +51,9 @@ function ProductListScreen({ navigation }: ProductStackScreenProps<'ProductList'
       <View style={styles.toolbar}>
         <Pressable style={styles.menuButton} onPress={openMenu}>
           <Text style={styles.menuButtonText}>Menu</Text>
+        </Pressable>
+        <Pressable style={styles.menuButton} onPress={openFilter}>
+          <Text style={styles.menuButtonText}>Filter</Text>
         </Pressable>
       </View>
       <FlatList

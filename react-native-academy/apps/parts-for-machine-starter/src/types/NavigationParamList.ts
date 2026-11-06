@@ -2,9 +2,11 @@ import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackScreenProps } from '@react-navigation/stack';
+import { GetProductListOptions } from '../mock-data/data';
 
 export type ProductStackParamList = {
-  ProductList: undefined;
+  ProductList: GetProductListOptions | undefined;
   ProductDetail: { productId: string };
 };
 
@@ -32,5 +34,20 @@ export type DrawerParamList = {
 
 export type RootNavigationScreenProps<T extends keyof DrawerParamList> = DrawerScreenProps<
   DrawerParamList,
+  T
+>;
+
+export type RootStackParamList = {
+  Drawer: NavigatorScreenParams<DrawerParamList>;
+  ProductFilter: GetProductListOptions | undefined;
+};
+
+export type DrawerNavigationScreenProps<T extends keyof DrawerParamList> = CompositeScreenProps<
+  DrawerScreenProps<DrawerParamList, T>,
+  RootStackScreenProps<'Drawer'>
+>;
+
+export type RootStackScreenProps<T extends keyof RootStackParamList> = StackScreenProps<
+  RootStackParamList,
   T
 >;
