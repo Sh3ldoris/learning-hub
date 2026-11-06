@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import { getProductList, Product } from '../mock-data/data';
 import { ProductStackScreenProps } from '../types/NavigationParamList';
@@ -10,6 +10,8 @@ function ProductSeparator() {
 }
 
 function ProductListScreen({ navigation, route }: ProductStackScreenProps<'ProductList'>) {
+  const flatListRef = useRef<FlatList>(null);
+
   // Navigation to production detail screen
   const navigateToProductDetail = useCallback(
     (productId: string) => {
@@ -26,6 +28,11 @@ function ProductListScreen({ navigation, route }: ProductStackScreenProps<'Produ
   const openMenu = useCallback(() => {
     navigation.openDrawer();
   }, [navigation]);
+
+  // Scroll to top when navigation params change (e.g., after returning from filter)
+  useEffect(() => {
+    flatListRef.current?.scrollToOffset({ offset: 0, animated: false });
+  }, [route.params]);
 
   const renderProduct = useCallback(
     ({ item }: { item: Product }) => (
@@ -57,6 +64,7 @@ function ProductListScreen({ navigation, route }: ProductStackScreenProps<'Produ
         </Pressable>
       </View>
       <FlatList
+        ref={flatListRef}
         data={productList}
         renderItem={renderProduct}
         keyExtractor={keyExtractor}

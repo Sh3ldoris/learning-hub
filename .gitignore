@@ -89,3 +89,6 @@ yarn-error.*
 
 # Reassure measurements
 .reassure/
+
+
+.junie/**
