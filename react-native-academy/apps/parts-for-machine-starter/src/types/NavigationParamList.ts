@@ -23,7 +23,7 @@ export type BottomTabParamList = {
 export type BottomTabNavigationScreenProps<T extends keyof BottomTabParamList> =
   CompositeScreenProps<
     BottomTabScreenProps<BottomTabParamList, T>,
-    RootNavigationScreenProps<'BottomNavigation'>
+    DrawerNavigationScreenProps<'BottomNavigation'>
   >;
 
 export type DrawerParamList = {
@@ -31,11 +31,6 @@ export type DrawerParamList = {
   UserDetail: undefined;
   Login: undefined;
 };
-
-export type RootNavigationScreenProps<T extends keyof DrawerParamList> = DrawerScreenProps<
-  DrawerParamList,
-  T
->;
 
 export type RootStackParamList = {
   Drawer: NavigatorScreenParams<DrawerParamList>;
