@@ -17,7 +17,7 @@ export type ProductStackScreenProps<T extends keyof ProductStackParamList> = Com
 
 export type BottomTabParamList = {
   ProductsStack: NavigatorScreenParams<ProductStackParamList>;
-  FavoriteProductList: undefined;
+  FavoriteProductList: GetProductListOptions | undefined;
 };
 
 export type BottomTabNavigationScreenProps<T extends keyof BottomTabParamList> =

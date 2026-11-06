@@ -1,6 +1,6 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
-import { getFavoriteProducts, Product } from '../mock-data/data';
+import { getProductList, Product } from '../mock-data/data';
 import { BottomTabNavigationScreenProps } from '../types/NavigationParamList';
 
 const keyExtractor = (item: Product) => item.id;
@@ -9,11 +9,14 @@ function ProductSeparator() {
   return <View style={styles.separator} />;
 }
 
-const productList = getFavoriteProducts();
-
 function FavoriteProductListScreen({
   navigation,
+  route,
 }: BottomTabNavigationScreenProps<'FavoriteProductList'>) {
+  // Filtered products
+  const productList = useMemo(() => getProductList(route.params), [route.params]);
+  const flatListRef = useRef<FlatList>(null);
+
   const navigateToProductDetail = useCallback(
     (productId: string) => {
       navigation.navigate('ProductsStack', {
@@ -24,6 +27,17 @@ function FavoriteProductListScreen({
     },
     [navigation],
   );
+  const openFilter = useCallback(() => {
+    navigation.navigate('ProductFilter', {
+      currentFilter: route.params,
+      sourceScreenKey: route.key,
+      sourceNavigatorKey: navigation.getState().key,
+    });
+  }, [navigation, route.params, route.key]);
+
+  useEffect(() => {
+    flatListRef.current?.scrollToOffset({ animated: false, offset: 0 });
+  }, [route.params]);
 
   const renderProduct = useCallback(
     ({ item }: { item: Product }) => (
@@ -46,7 +60,13 @@ function FavoriteProductListScreen({
 
   return (
     <View style={styles.container}>
+      <View style={styles.toolbar}>
+        <Pressable style={styles.menuButton} onPress={openFilter}>
+          <Text style={styles.menuButtonText}>Filter</Text>
+        </Pressable>
+      </View>
       <FlatList
+        ref={flatListRef}
         data={productList}
         renderItem={renderProduct}
         keyExtractor={keyExtractor}
@@ -102,6 +122,22 @@ const styles = StyleSheet.create({
   },
   separator: {
     height: 10,
+  },
+  toolbar: {
+    flexDirection: 'row',
+    gap: 10,
+    paddingHorizontal: 16,
+    paddingTop: 16,
+  },
+  menuButton: {
+    backgroundColor: '#1C1C1E',
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+  },
+  menuButtonText: {
+    color: '#FFFFFF',
+    fontWeight: '600',
   },
 });
 
