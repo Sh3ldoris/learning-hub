@@ -1,6 +1,10 @@
 import { useReactNavigationDevTools } from '@dev-plugins/react-navigation';
 import { useLogger } from '@react-navigation/devtools';
-import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
+import {
+  DefaultTheme,
+  NavigationContainer,
+  useNavigationContainerRef,
+} from '@react-navigation/native';
 import * as Linking from 'expo-linking';
 import LoginContext from './context/LoginContext';
 import { RootNavigation } from './screens/RootNavigation';
@@ -35,6 +39,15 @@ const linking = {
   },
 };
 
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: 'rgb(91, 196, 191)',
+    primary: 'rgb(193, 66, 67)',
+  },
+};
+
 export function App() {
   const navigationRef = useNavigationContainerRef();
   useLogger(navigationRef); // Definition of using logger instance
@@ -43,7 +56,7 @@ export function App() {
   useReactNavigationDevTools(navigationRef);
 
   return (
-    <NavigationContainer linking={linking} ref={navigationRef}>
+    <NavigationContainer theme={MyTheme} linking={linking} ref={navigationRef}>
       <LoginContext>
         <RootNavigation />
       </LoginContext>
