@@ -3,6 +3,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useContext } from 'react';
+import CartButton from '../components/CartButton';
 import DrawerMenuButton from '../components/DrawerMenuButton';
 import { LoginContextProvider } from '../context/LoginContext';
 import {
@@ -11,6 +12,7 @@ import {
   ProductStackParamList,
   RootStackParamList,
 } from '../types/NavigationParamList';
+import CheckoutCartScreen from './CheckoutCartScreen';
 import FavoriteProductListScreen from './FavoriteProductListScreen';
 import LoginScreen from './LoginScreen';
 import ProductDetailScreen from './ProductDetailScreen';
@@ -31,6 +33,7 @@ export function ProductsStack() {
         options={{
           title: 'Produkty',
           headerLeft: () => <DrawerMenuButton />,
+          headerRight: () => <CartButton />,
         }}
         component={ProductListScreen}
       />
@@ -94,6 +97,13 @@ export const RootNavigation = () => {
         options={{ presentation: 'card' }}
         name="ProductFilter"
         component={ProductFilterScreen}
+      />
+      <RootStack.Screen
+        name="CheckoutCart"
+        component={CheckoutCartScreen}
+        options={() => ({
+          title: 'Košík',
+        })}
       />
     </RootStack.Navigator>
   );

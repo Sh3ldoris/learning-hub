@@ -41,8 +41,8 @@ export type RootStackParamList = {
     // navigation.getState().key navigátora, ktorý vlastní zdrojovú obrazovku
     sourceNavigatorKey: string;
   };
+  CheckoutCart: undefined;
 };
-
 export type DrawerNavigationScreenProps<T extends keyof DrawerParamList> = CompositeScreenProps<
   DrawerScreenProps<DrawerParamList, T>,
   RootStackScreenProps<'Drawer'>
