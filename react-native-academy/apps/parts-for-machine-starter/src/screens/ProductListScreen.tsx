@@ -60,9 +60,6 @@ function ProductListScreen({ navigation, route }: ProductStackScreenProps<'Produ
   return (
     <View style={styles.container}>
       <View style={styles.toolbar}>
-        <Pressable style={styles.menuButton} onPress={openMenu}>
-          <Text style={styles.menuButtonText}>Menu</Text>
-        </Pressable>
         <Pressable style={styles.menuButton} onPress={openFilter}>
           <Text style={styles.menuButtonText}>Filter</Text>
         </Pressable>
@@ -84,6 +81,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   listContent: {
+    paddingTop: 0,
     padding: 16,
   },
   title: {
@@ -129,7 +127,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 10,
     paddingHorizontal: 16,
-    paddingTop: 16,
+    padding: 16,
   },
   menuButton: {
     backgroundColor: '#1C1C1E',

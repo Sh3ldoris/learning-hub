@@ -3,6 +3,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useContext } from 'react';
+import DrawerMenuButton from '../components/DrawerMenuButton';
 import { LoginContextProvider } from '../context/LoginContext';
 import {
   BottomTabParamList,
@@ -24,9 +25,16 @@ const RootStack = createStackNavigator<RootStackParamList>();
 
 export function ProductsStack() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="ProductList" component={ProductListScreen} />
-      <Stack.Screen name="ProductDetail" component={ProductDetailScreen} />
+    <Stack.Navigator screenOptions={{ headerBackButtonDisplayMode: 'minimal' }}>
+      <Stack.Screen
+        name="ProductList"
+        options={{
+          title: 'Produkty',
+          headerLeft: () => <DrawerMenuButton />,
+        }}
+        component={ProductListScreen}
+      />
+      <Stack.Screen name="ProductDetail" options={{ title: '' }} component={ProductDetailScreen} />
     </Stack.Navigator>
   );
 }
@@ -58,9 +66,17 @@ export const DrawerNavigation = () => {
         options={{ headerShown: false }}
       />
       {isLoggedIn ? (
-        <Drawer.Screen name="UserDetail" component={UserDetailScreen} />
+        <Drawer.Screen
+          name="UserDetail"
+          component={UserDetailScreen}
+          options={{ headerLeft: () => <DrawerMenuButton /> }}
+        />
       ) : (
-        <Drawer.Screen name="Login" component={LoginScreen} />
+        <Drawer.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ headerLeft: () => <DrawerMenuButton /> }}
+        />
       )}
     </Drawer.Navigator>
   );

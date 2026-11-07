@@ -1,12 +1,18 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { getProductById } from '../mock-data/data';
 import { ProductStackScreenProps } from '../types/NavigationParamList';
 
-function ProductDetailScreen({ route }: ProductStackScreenProps<'ProductDetail'>) {
+function ProductDetailScreen({ navigation, route }: ProductStackScreenProps<'ProductDetail'>) {
   const product = useMemo(() => {
     return getProductById(route.params.productId);
   }, [route.params.productId]);
+
+  useEffect(() => {
+    if (product?.name) {
+      navigation.setOptions({ title: product.name });
+    }
+  }, [navigation, product]);
 
   if (!product) {
     return (
