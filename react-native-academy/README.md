@@ -9,8 +9,13 @@
 
 **Prezentácie:**
 
-- Časť 1: [Úvod do RNA](presentations/1.1%20-%20Uvod%20do%20RNA.pdf) 
-- Časť 2 [Úvod do React Native](presentations/1.2%20-%20Uvod%20do%20React%20Native.pdf)
+- Úvod do RNA: [Úvod do RNA](presentations/1.1%20-%20Uvod%20do%20RNA.pdf) 
+- Úvod do React Native: [Úvod do React Native](presentations/1.2%20-%20Uvod%20do%20React%20Native.pdf)
+
+**Materiály**:
+
+- Úvod do RNA: [Úvod do RNA](content/1-uvod-do-rna/1-1-uvod-do-rna.md) 
+- Úvod do React Native: [Úvod do React Native](content/1-uvod-do-rna/1-2-uvod-do-react-native.md)
 
 ### 2. Základy Reactu
 
