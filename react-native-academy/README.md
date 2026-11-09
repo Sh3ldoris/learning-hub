@@ -19,7 +19,7 @@
 - Video 1: [2. hodina](https://localhost365-my.sharepoint.com/:v:/g/personal/stefan_localhost_company/IQD-21vtffU2QpsIsyx-vwroAd6UAM7Wg3vV7knBTwiChls?e=a5HXdK)
 - Video 2: [3. hodina](https://localhost365-my.sharepoint.com/:v:/g/personal/stefan_localhost_company/IQD-QkLOxLb0Q6AZI_zyHhpzAUe-OLty0q435_byu2GmYTM?e=QdGasG)
 
-**Prezentácia:** TBD.
+**Prezentácia:** [Základy Reactu (PDF)](presentations/2%20-%20Zaklady%20Reactu.pdf).
 
 ### 3. Základy React Native
 
