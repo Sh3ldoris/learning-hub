@@ -7,7 +7,10 @@
 - Video 1: [1.hodina](https://localhost365-my.sharepoint.com/:v:/g/personal/stefan_localhost_company/IQDI31dR6iTXTKjccqtRwIYHAdjuoAHkOPxcyBKfnLrRuhU?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=wISkWS)
 - Video 2: [4. hodina](https://localhost365-my.sharepoint.com/:v:/g/personal/stefan_localhost_company/IQBBGU9d0obER7M1XCgQSDbMAQBMTgOhAbL-XiRp4wVxl30?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=aRpuUz)
 
-**Prezentácia:** TBD.
+**Prezentácie:**
+
+- Časť 1: [Úvod do RNA](presentations/1.1%20-%20Uvod%20do%20RNA.pdf) 
+- Časť 2 [Úvod do React Native](presentations/1.2%20-%20Uvod%20do%20React%20Native.pdf)
 
 ### 2. Základy Reactu
 
